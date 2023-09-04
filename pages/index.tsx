@@ -23,7 +23,7 @@ export default function Home({ allPosts }) {
         <h1 className="text-5xl font-medium text-center mb-16">
           Notion Blog 🚀
         </h1>
-        {allPosts.map((post) => (
+        {allPosts.map((post:any) => (
           <div key={post.id} className="mx-4">
             <SinglePost
               title={post.title}

@@ -17,7 +17,6 @@ export const getAllPosts = async () => {
   }) // 1.まずnotionDBに入ってデータを100個までもってくる
 
   const allPosts = posts.results; // 2. わかりやすいように、allPOstsという変数に入れる
-
   return allPosts.map((post) => { // 3. map関数で、1つずつデータを取り出して、postに入れる
     return getPageMetaData(post);
   });
@@ -30,10 +29,10 @@ const getPageMetaData = (post) => {
     const allTags = tags.map((tag) => {
       return tag.name;
     })
-
+    
     return allTags;
   }
-
+  
   return {
     id: post.id,
     title: post.properties.Name.title[0].plain_text,
@@ -64,10 +63,17 @@ export const getSinglePost = async (slug) => { // getSinglePost3. (2)で取っ�
 
   const mdBlocks = await n2m.pageToMarkdown(page.id)
   const mdString = n2m.toMarkdownString(mdBlocks)
-  console.log(mdString.parent);
+  //console.log(mdString.parent);
 
   return {
     metadata,
     markdown: mdString.parent,
   }
 };
+
+// TOPページ用の記事取得（4つ）
+export const getPostsForTopPage = async (pageSize=4) => {
+  const allPosts = await getAllPosts(); // 全て取得
+  const topPosts = allPosts.slice(0,pageSize) //slice関数で、4つだけ取得
+  return topPosts;
+}

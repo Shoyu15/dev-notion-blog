@@ -1,0 +1,1 @@
+export const NUMBER_OF_POSTS_PER_PAGE = 10; // 4は一覧に表示したい記事の数。

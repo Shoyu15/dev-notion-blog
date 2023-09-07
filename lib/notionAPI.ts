@@ -1,3 +1,4 @@
+import { NUMBER_OF_POSTS_PER_PAGE } from "@/constants/constans";
 import { Client } from "@notionhq/client"
 import { NotionToMarkdown } from "notion-to-md"
 
@@ -29,10 +30,10 @@ const getPageMetaData = (post) => {
     const allTags = tags.map((tag) => {
       return tag.name;
     })
-    
+
     return allTags;
   }
-  
+
   return {
     id: post.id,
     title: post.properties.Name.title[0].plain_text,
@@ -72,8 +73,27 @@ export const getSinglePost = async (slug) => { // getSinglePost3. (2)で取っ�
 };
 
 // TOPページ用の記事取得（4つ）
-export const getPostsForTopPage = async (pageSize=4) => {
+export const getPostsForTopPage = async (pageSize = 4) => {
   const allPosts = await getAllPosts(); // 全て取得
-  const topPosts = allPosts.slice(0,pageSize) //slice関数で、4つだけ取得
+  const topPosts = allPosts.slice(0, pageSize) //slice関数で、4つだけ取得
   return topPosts;
 }
+
+// ページ番号に応じた記事を取得
+export const getPostsByPage = async (page: number) => {
+  const allPosts = await getAllPosts();
+
+  const startIndex = (page - 1) * NUMBER_OF_POSTS_PER_PAGE; // slice関数を動的に追歌目の計算ロジック page1なら0 / page2なら4
+  const endIndex = startIndex + NUMBER_OF_POSTS_PER_PAGE; // slice関数を動的に追歌目の計算ロジック page1なら4 / page2なら8
+
+  return allPosts.slice(startIndex, endIndex)
+}
+
+export const getNumberOfPages = async () => {
+  const allPosts = await getAllPosts();
+
+  return (
+    Math.floor(allPosts.length / NUMBER_OF_POSTS_PER_PAGE) +
+    (allPosts.length % NUMBER_OF_POSTS_PER_PAGE > 0 ? 1 : 0)
+    );
+};

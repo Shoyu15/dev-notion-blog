@@ -1,12 +1,14 @@
+import { getPageLink } from "@/lib/blog-helper";
 import Link from "next/link";
 import React from "react";
 
 interface Props {
   numberOfPage: number;
+  tag: string;
 }
 
 export const Pagination = (props: Props) => {
-  const { numberOfPage } = props;
+  const { numberOfPage, tag } = props;
 
   let pages: number[] = [];
   for (let i = 1; i <= numberOfPage; i++) {
@@ -21,7 +23,7 @@ export const Pagination = (props: Props) => {
             key={page}
             className="bg-sky-900 rounded-lg w-6 h-8 flex items-center justify-center"
           >
-            <Link href={`/posts/page/${page}`} className="text-xs text-gray-100">
+            <Link href={getPageLink(tag,page)} className="text-xs text-gray-100">
               {page}
             </Link>
           </li>

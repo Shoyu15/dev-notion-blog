@@ -15,6 +15,12 @@ export const getAllPosts = async () => {
   const posts = await notion.databases.query({
     database_id: process.env.NOTION_DATABASE_ID,
     page_size: 100,
+    filter: {
+      property: "Published",
+      checkbox: {
+        equals: true,
+      },
+    },
     sorts: [
       {
         property: "Date",
@@ -107,19 +113,19 @@ export const getNumberOfPages = async () => {
 // slugにあるタグの記事を取得
 export const getPostsByTagAndPage = async (tagName: string, page: number) => {
   const allPosts = await getAllPosts();
-  const posts = allPosts.filter((post) => 
+  const posts = allPosts.filter((post) =>
     post.tags.find((tag: string) => tag === tagName)
   );
 
   const startIndex = (page - 1) * NUMBER_OF_POSTS_PER_PAGE; // slice関数を動的に追歌目の計算ロジック page1なら0 / page2なら4
-  const endIndex = startIndex + NUMBER_OF_POSTS_PER_PAGE; 
+  const endIndex = startIndex + NUMBER_OF_POSTS_PER_PAGE;
 
   return posts.slice(startIndex, endIndex)
 };
 
-export const getNumberOfPagesByTag = async (tagName:string) => {
+export const getNumberOfPagesByTag = async (tagName: string) => {
   const allPosts = await getAllPosts();
-  const posts = allPosts.filter((post) => 
+  const posts = allPosts.filter((post) =>
     post.tags.find((tag: string) => tag === tagName)
   );
 

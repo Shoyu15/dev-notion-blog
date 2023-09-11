@@ -1,4 +1,5 @@
 import SinglePost from "@/components/Post/SinglePost";
+import { Tag } from "@/components/Tag/Tag";
 import { Pagination } from "@/components/pagination/Pagination";
 import {
   getAllTags,
@@ -45,11 +46,14 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   const numberOfPagesByTag = await getNumberOfPagesByTag(upperCaseCurrentTag);
 
+  const allTags = await getAllTags();
+
   return {
     props: {
       posts,
       numberOfPagesByTag,
       currentTag,
+      allTags,
     },
     revalidate: 60 * 60 * 6,
   };
@@ -59,6 +63,7 @@ const BlogTagPageList = ({
   numberOfPagesByTag,
   posts,
   currentTag,
+  allTags,
 }) => {
   return (
     <div>
@@ -83,10 +88,8 @@ const BlogTagPageList = ({
             </div>
           ))}
         </section>
-        <Pagination
-          numberOfPage={numberOfPagesByTag}
-          tag={currentTag}
-        />
+        <Pagination numberOfPage={numberOfPagesByTag} tag={currentTag} />
+        <Tag tags={allTags} />
       </main>
     </div>
   );

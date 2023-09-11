@@ -18,18 +18,17 @@ const SinglePost = (props: Props) => {
         <article className="mb-8 mx-auto rounded-md p-5 ">
           <div className="lg:flex items-center gap-3">
             <Link href={`/posts/${slug}`}>
-              <h2 className=" text-2xl font-medium mb-2">
-                {title}
-              </h2>
+              <h2 className=" text-2xl font-medium mb-2">{title}</h2>
             </Link>
             <div className="">{date}</div>
-            {tags.map((tag:string, index:number) => (
-              <span
+            {tags.map((tag: string, index: number) => (
+              <Link
+                href={`/posts/tag/${tag}/page/1`}
                 key={index}
                 className=" bg-gray-500 rounded-md px-2 pb-1 font-medium"
               >
                 {tag}
-              </span>
+              </Link>
             ))}
           </div>
           <p className="">{description}</p>
@@ -38,18 +37,17 @@ const SinglePost = (props: Props) => {
         <article className="lg:w-1/2 mb-8 mx-auto rounded-md p-5">
           <div className="flex items-center gap-3">
             <Link href={`/posts/${slug}`}>
-              <h2 className=" text-2xl font-medium mb-2">
-                {title}
-              </h2>
+              <h2 className=" text-2xl font-medium mb-2">{title}</h2>
             </Link>
             <div className="">{date}</div>
-            {tags.map((tag:string, index:number) => (
-              <span
+            {tags.map((tag: string, index: number) => (
+              <Link
+                href={`/posts/tag/${tag}/page/1`}
                 key={index}
                 className=" bg-gray-500 rounded-md px-2 pb-1 font-medium"
               >
                 {tag}
-              </span>
+              </Link>
             ))}
           </div>
           <p className="">{description}</p>

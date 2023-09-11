@@ -1,4 +1,5 @@
 import { getAllPosts, getSinglePost } from "@/lib/notionAPI";
+import Link from "next/link";
 import React from "react";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
@@ -33,13 +34,14 @@ const Post = ({ post }) => {
       <div className="border-b-2 w-1/3 mt-1 border-sky-900"></div>
       <span className="text-gray-500">{post.metadata.date}</span>
       <br />
-      {post.metadata.tags.map((tag:string, index: number) => (
-        <p
+      {post.metadata.tags.map((tag: string, index: number) => (
+        <Link
+          href={`/posts/tag/${tag}/page/1`}
           key={index}
-          className="text-white bg-sky-900 rounded-xl font-medium mt-2 px-2 inline-block mr-2"
+          className=" bg-gray-500 rounded-md px-2 pb-1 font-medium"
         >
           {tag}
-        </p>
+        </Link>
       ))}
       <div className="mt-10 font-medium">
         <ReactMarkdown

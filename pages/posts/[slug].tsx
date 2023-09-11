@@ -23,7 +23,7 @@ export const getStaticProps = async ({ params }) => {
     props: {
       post,
     },
-    revalidate: 60 * 60 * 6,
+    revalidate: 10,
   };
 };
 
@@ -45,26 +45,25 @@ const Post = ({ post }) => {
       ))}
       <div className="mt-10 font-medium">
         <ReactMarkdown
-          children={post.markdown}
           components={{
-            code({ node, inline, className, children, ...props }) {
+            code({ node, inline, className, children }) {
               const match = /language-(\w+)/.exec(className || "");
               return !inline && match ? (
                 <SyntaxHighlighter
-                  {...props}
-                  children={String(children).replace(/\n$/, "")}
                   style={vscDarkPlus}
                   language={match[1]}
                   PreTag="div"
-                />
+                >
+                  {String(children).replace(/\n$/, "")}
+                </SyntaxHighlighter>
               ) : (
-                <code {...props} className={className}>
-                  {children}
-                </code>
+                <code>{children}</code>
               );
             },
           }}
-        ></ReactMarkdown>
+        >
+          {post.markdown}
+        </ReactMarkdown>
       </div>
     </section>
   );

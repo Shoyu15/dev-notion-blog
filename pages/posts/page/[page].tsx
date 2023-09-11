@@ -38,7 +38,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
       numberOfPage, //←同じ名前の時は postsByPage, のみでいい
       allTags,
     },
-    revalidate: 60 * 60 * 6,
+    revalidate: 10,
   };
 };
 

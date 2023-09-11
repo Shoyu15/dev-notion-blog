@@ -13,7 +13,7 @@ export const getStaticProps = async () => {
       topPosts: topPosts, //←同じ名前の時は topPosts, のみでいい
       allTags,
     },
-    revalidate: 60 * 60 * 6,
+    revalidate: 10,
   };
 };
 

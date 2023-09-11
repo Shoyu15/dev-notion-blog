@@ -15,6 +15,12 @@ export const getAllPosts = async () => {
   const posts = await notion.databases.query({
     database_id: process.env.NOTION_DATABASE_ID,
     page_size: 100,
+    sorts: [
+      {
+        property: "Date",
+        direction: "descending"
+      }
+    ]
   }) // 1.まずnotionDBに入ってデータを100個までもってくる
 
   const allPosts = posts.results; // 2. わかりやすいように、allPOstsという変数に入れる

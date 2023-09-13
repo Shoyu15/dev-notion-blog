@@ -31,26 +31,13 @@ const SinglePost = (props: Props) => {
               </Link>
             ))}
           </div>
-          <p className="">{description}</p>
         </article>
       ) : (
         <article className="lg:w-1/2 mb-8 mx-auto rounded-md p-5">
-          <div className="flex items-center gap-3">
-            <Link href={`/posts/${slug}`}>
-              <h2 className=" text-2xl font-medium mb-2">{title}</h2>
-            </Link>
+          <Link href={`/posts/${slug}`} className="flex flex-wrap items-center gap-3">
             <div className="">{date}</div>
-            {tags.map((tag: string, index: number) => (
-              <Link
-                href={`/posts/tag/${tag}/page/1`}
-                key={index}
-                className=" bg-gray-500 rounded-md px-2 pb-1 font-medium"
-              >
-                {tag}
-              </Link>
-            ))}
-          </div>
-          <p className="">{description}</p>
+            <h2 className="text-sm font-medium">{title}</h2>
+          </Link>
         </article>
       )}
     </>

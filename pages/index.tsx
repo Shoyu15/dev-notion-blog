@@ -24,10 +24,8 @@ export default function Home({ topPosts, allTags }) {
         <title>Notion Blog</title>
       </Head>
       <main className="container w-full mx-auto mt-16">
-        <h1 className="text-5xl font-medium text-center mb-16">
-          Notion Blog 🚀
-        </h1>
-        {topPosts.map((post:any) => (
+        <Tag tags={allTags} />
+        {topPosts.map((post: any) => (
           <div key={post.id} className="mx-4">
             <SinglePost
               title={post.title}
@@ -39,10 +37,12 @@ export default function Home({ topPosts, allTags }) {
             />
           </div>
         ))}
-        <Link href="/posts/page/1" className="mb-6 lg:w-1/2 mx-auto px-5 block text-right">
+        <Link
+          href="/posts/page/1"
+          className="mb-6 lg:w-1/2 mx-auto px-5 block text-right"
+        >
           もっと見る
         </Link>
-        <Tag tags={allTags}/>
       </main>
     </div>
   );

@@ -3,8 +3,8 @@ import React from "react";
 
 export const Navbar = () => {
   return (
-    <nav className="container mx-auto lg:px-2 px-5 lg:w-2/5">
-      <div className="container flex items-center justify-between mx-auto">
+    <nav className="container mx-auto">
+      <div className="flex items-center justify-between mx-auto">
         <Link href="/" className="text-xl font-medium">
           Blog
         </Link>
@@ -14,7 +14,7 @@ export const Navbar = () => {
               <Link href="/" className="block px-4 py-2 hover:text-sky-900 transition-all duration-300">TOP</Link>
             </li>
             <li>
-              <Link href="/" className="block px-4 py-2 hover:text-sky-900 transition-all duration-300">Tips</Link>
+              <Link href="/tips" className="block px-4 py-2 hover:text-sky-900 transition-all duration-300">Tips</Link>
             </li>
             <li>
               <Link href="/about" className="block px-4 py-2 hover:text-sky-900 transition-all duration-300">About</Link>

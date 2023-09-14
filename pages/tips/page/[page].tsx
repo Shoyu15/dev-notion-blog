@@ -49,10 +49,11 @@ const BlogPageList = ({ postsByPage, numberOfPage, allTags }) => {
         <title>Notion Blog</title>
       </Head>
       <main className="container w-full mx-auto mt-16">
-        <h1 className="text-5xl font-medium text-center mb-16">
-          Notion Blog 🚀
-        </h1>
-        <section className="sm:grid grid-cols-2 w-5/6 gap-3 mx-auto">
+        <div className="">
+          <h1 className="text-5xl font-medium text-center">All Tips</h1>
+        </div>
+        <Tag tags={allTags} />
+        <section className="sm:grid grid-cols-2 gap-3 mx-auto">
           {postsByPage.map((post: any) => (
             <div key={post.id}>
               <SinglePost
@@ -66,8 +67,8 @@ const BlogPageList = ({ postsByPage, numberOfPage, allTags }) => {
             </div>
           ))}
         </section>
-        <Pagination numberOfPage={numberOfPage} tag={""}/>
-        <Tag tags={allTags}/>
+        <Pagination numberOfPage={numberOfPage} tag={""} />
+        <Tag tags={allTags} />
       </main>
     </div>
   );

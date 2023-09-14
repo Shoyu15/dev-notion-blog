@@ -9,17 +9,18 @@ export const Tag = (props: Props) => {
   const { tags } = props;
 
   return (
-    <div className="mx-4">
-      <section className="mb-8 mx-auto">
-        <div>タグ検索</div>
-        <div className="flex gap-3 mt-3">
-          {tags.map((tag: string, index:number) => (
-            <Link href={`/posts/tag/${tag}/page/1`} key={index}>
-              <span>{tag}</span>
-            </Link>
-          ))}
-        </div>
-      </section>
-    </div>
+    <section className="background-white-100 mx-auto mt-16">
+      <div className="flex flex-wrap gap-3">
+        {tags.map((tag: string, index: number) => (
+          <Link
+            href={`/tag/${tag}/1`}
+            key={index}
+            className="border-my-color-dark border rounded-lg flex items-center justify-center px-4 py-1"
+          >
+            <span className="text-my-color-dark">{tag}</span>
+          </Link>
+        ))}
+      </div>
+    </section>
   );
 };

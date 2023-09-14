@@ -65,6 +65,11 @@ const Post = ({ post }) => {
           {post.markdown}
         </ReactMarkdown>
       </div>
+      <div className="w-full text-center mt-16 mx-auto">
+          <Link href="/tips/1">
+            一覧へ戻る
+          </Link>
+        </div>
     </section>
   );
 };

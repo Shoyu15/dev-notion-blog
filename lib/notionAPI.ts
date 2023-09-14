@@ -84,10 +84,10 @@ export const getSinglePost = async (slug) => { // getSinglePost3. (2)で取っ�
   }
 };
 
-// TOPページ用の記事取得（4つ）
-export const getPostsForTopPage = async (pageSize = 4) => {
+// TOPページ用の記事取得（5つ）
+export const getPostsForTopPage = async (pageSize = 5) => {
   const allPosts = await getAllPosts(); // 全て取得
-  const topPosts = allPosts.slice(0, pageSize) //slice関数で、4つだけ取得
+  const topPosts = allPosts.slice(0, pageSize) //slice関数で、5つだけ取得
   return topPosts;
 }
 

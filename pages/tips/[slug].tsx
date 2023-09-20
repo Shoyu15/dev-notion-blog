@@ -29,20 +29,19 @@ export const getStaticProps = async ({ params }) => {
 
 const Post = ({ post }) => {
   return (
-    <section className="container lg:px-2 px-5 h-screen lg:w-2/5 mx-auto mt-20">
-      <h2 className="w-full text-2xl font-me">{post.metadata.title}</h2>
-      <div className="border-b-2 w-1/3 mt-1 border-sky-900"></div>
-      <span className="text-gray-500">{post.metadata.date}</span>
-      <br />
+    <section className="container mx-auto mt-20 max-w-4xl">
+      <h2 className="w-full text-3xl font-semibold">{post.metadata.title}</h2>
+      <p className="mt-2 text-gray-200">{post.metadata.date}</p>
+      <ul className="[&>*:not(:first-child)]:ml-2 mt-6">
       {post.metadata.tags.map((tag: string, index: number) => (
-        <Link
-          href={`/posts/tag/${tag}/page/1`}
-          key={index}
-          className=" bg-gray-500 rounded-md px-2 pb-1 font-medium"
+        <li
+        key={index}
+        className="bg-my-color-white inline-block text-my-color-dark rounded-xl px-3 py-1 font-normal text-xs"
         >
           {tag}
-        </Link>
+        </li>
       ))}
+      </ul>
       <div className="mt-10 font-medium">
         <ReactMarkdown
           components={{

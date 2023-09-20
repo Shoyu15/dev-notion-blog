@@ -9,18 +9,23 @@ export const Tag = (props: Props) => {
   const { tags } = props;
 
   return (
-    <section className="background-white-100 mx-auto mt-16">
-      <div className="flex flex-wrap gap-3">
+    <div className="mx-auto">
+      <span className="text-gray-300">Category</span>
+      <ul className="flex flex-wrap mt-6 [&>*:not(:first-child)]:ml-2">
+      <li className="border-my-color-white border rounded-2xl text-my-color-white flex items-center justify-center px-4 py-1 font-normal text-sm ease-in-out duration-300 hover:bg-my-color-white hover:text-my-color-dark">
+        <Link href="/tips">All</Link>
+      </li>
         {tags.map((tag: string, index: number) => (
-          <Link
-            href={`/tag/${tag}/1`}
-            key={index}
-            className="border-my-color-dark border rounded-lg flex items-center justify-center px-4 py-1"
-          >
-            <span className="text-my-color-dark">{tag}</span>
-          </Link>
+          <li key={index}>
+            <Link
+              href={`/tag/${tag}`}
+              className="border-my-color-white border rounded-2xl text-my-color-white flex items-center justify-center px-4 py-1 font-normal text-sm ease-in-out duration-300 hover:bg-my-color-white hover:text-my-color-dark"
+            >
+              {tag}
+            </Link>
+          </li>
         ))}
-      </div>
-    </section>
+      </ul>
+    </div>
   );
 };

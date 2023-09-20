@@ -1,10 +1,10 @@
 import React from 'react'
-import { Navbar } from './Navbar'
+import ReturnTopButton from './ReturnTopButton'
 
 function Footer() {
   return (
-    <div className='mt-8 py-8'>
-      <Navbar />
+    <div className='mt-16 py-8 text-center'>
+      <ReturnTopButton />
     </div>
   )
 }

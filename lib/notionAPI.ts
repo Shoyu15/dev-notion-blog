@@ -37,7 +37,6 @@ export const getAllPosts = async () => {
 
 // 4. postに入ったデータのままだと使いづらいので、関数で使いやすいように取り出す
 const getPageMetaData = (post) => {
-
   const getTags = (tags) => { // 6. tagsの配列からtagを取り出す関数
     const allTags = tags.map((tag) => {
       return tag.name;
@@ -54,6 +53,10 @@ const getPageMetaData = (post) => {
     slug: post.properties.Slug.rich_text[0].plain_text,
     // 5. tagsは配列になっていてややこしいので、6. でベット関数を用意して取り出して使う
     tags: getTags(post.properties.Tags.multi_select),
+    thumbnail:
+      post.properties.Thumb && post.properties.Thumb.files.length > 0
+        ? post.properties.Thumb.files[0].file.url
+        : null,
   }
 }
 
@@ -91,6 +94,13 @@ export const getPostsForTopPage = async (pageSize = 5) => {
   return topPosts;
 }
 
+// TOPページ用の最新記事取得（1つ）
+export const getLatestPostsForTopPage = async () => {
+  const allPosts = await getAllPosts(); // 全て取得
+  const topLatestPost = allPosts[0]; // 最新の1つの記事を取得
+  return topLatestPost;
+}
+
 // ページ番号に応じた記事を取得
 export const getPostsByPage = async (page: number) => {
   const allPosts = await getAllPosts();
@@ -121,6 +131,16 @@ export const getPostsByTagAndPage = async (tagName: string, page: number) => {
   const endIndex = startIndex + NUMBER_OF_POSTS_PER_PAGE;
 
   return posts.slice(startIndex, endIndex)
+};
+
+// tag一覧ページ ページネーションはなし
+export const getPostsByTag = async (tagName: string) => {
+  const allPosts = await getAllPosts();
+  const posts = allPosts.filter((post) =>
+    post.tags.find((tag: string) => tag === tagName)
+  );
+
+  return posts
 };
 
 export const getNumberOfPagesByTag = async (tagName: string) => {

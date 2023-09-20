@@ -26,7 +26,6 @@ const SinglePost = (props: Props) => {
               alt={title} // 画像の代替テキスト
               width={300} // 画像の幅
               height={200} // 画像の高さ
-              fallback={Noimg}
               className="object-cover aspect-video h-auto rounded-lg"
             />
           </div>

@@ -24,7 +24,7 @@ const SinglePost = (props: Props) => {
             <Image
               src={thumbnail} // 画像のURLを指定
               alt={title} // 画像の代替テキスト
-              width={300} // 画像の幅
+              width={300} // 画像の幅 
               height={200} // 画像の高さ
               className="object-cover aspect-video h-auto rounded-lg"
             />

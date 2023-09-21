@@ -2,27 +2,30 @@ import SinglePost from "@/components/Post/SinglePost";
 import { Tag } from "@/components/Tag/Tag";
 import {
   getAllTags,
-  getLatestPostsForTopPage,
   getPostsForTopPage,
 } from "@/lib/notionAPI";
+import { GetStaticProps } from "next";
 import Head from "next/head";
 
-export const getStaticProps = async () => {
+type Props = {
+  topPosts: any
+  allTags: any
+}
+
+export const getStaticProps: GetStaticProps = async () => {
   const topPosts = await getPostsForTopPage();
-  const topLatestPosts = await getLatestPostsForTopPage();
   const allTags = await getAllTags();
 
   return {
     props: {
       topPosts, //←同じ名前の時は topPosts, のみでいい
-      topLatestPosts,
       allTags,
     },
     revalidate: 10,
   };
 };
 
-export default function Home({ topPosts, allTags }) {
+export default function Home({ topPosts, allTags }:Props) {
   return (
     <div>
       <Head>

@@ -5,6 +5,11 @@ import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
+type Props = {
+  params: any
+  post: any
+}
+
 export const getStaticPaths = async () => {
   const allPosts = await getAllPosts();
   const paths = allPosts.map(({ slug }) => ({ params: { slug } }));
@@ -15,7 +20,7 @@ export const getStaticPaths = async () => {
   };
 };
 
-export const getStaticProps = async ({ params }) => {
+export const getStaticProps = async ({ params }:Props) => {
   // getSinglePost1. paramsという引数は現在のページのURLを見ることができる
   const post = await getSinglePost(params.slug); // getSinglePost2. URLの中のslugをgetSinglePOstに渡す
 
@@ -27,7 +32,7 @@ export const getStaticProps = async ({ params }) => {
   };
 };
 
-const Post = ({ post }) => {
+const Post = ({ post }:Props) => {
   return (
     <section className="container mx-auto mt-20 max-w-4xl">
       <h2 className="w-full text-3xl font-semibold">{post.metadata.title}</h2>

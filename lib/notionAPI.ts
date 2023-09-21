@@ -13,7 +13,7 @@ const n2m = new NotionToMarkdown({
 // 全ての投稿を取得
 export const getAllPosts = async () => {
   const posts = await notion.databases.query({
-    database_id: process.env.NOTION_DATABASE_ID,
+    database_id: process.env.NOTION_DATABASE_ID || '',
     page_size: 100,
     filter: {
       property: "Published",
@@ -63,7 +63,7 @@ const getPageMetaData = (post) => {
 // 詳細ページ用の投稿を取得
 export const getSinglePost = async (slug) => { // getSinglePost3. (2)で取ってきたslugがここに入る 
   const response = await notion.databases.query({
-    database_id: process.env.NOTION_DATABASE_ID,
+    database_id: process.env.NOTION_DATABASE_ID || '',
     filter: { //getSinglePost6. (5)っていう条件のフィルター
       property: "Slug", //getSinglePost5. NotionDBのSlug(SlugはNotionDBで設定したもの)を見て、(4)と一致するものを返す
       formula: {

@@ -1,7 +1,6 @@
 import SinglePost from "@/components/Post/SinglePost";
 import { Tag } from "@/components/Tag/Tag";
 import {
-  getAllPosts,
   getAllTags,
   getLatestPostsForTopPage,
   getPostsForTopPage,
@@ -23,7 +22,7 @@ export const getStaticProps = async () => {
   };
 };
 
-export default function Home({ topPosts, allTags, topLatestPosts }) {
+export default function Home({ topPosts, allTags }) {
   return (
     <div>
       <Head>

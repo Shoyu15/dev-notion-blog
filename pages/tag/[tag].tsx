@@ -35,11 +35,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const currentTag = context.params?.tag?.toString();
-
   const posts = await getPostsByTag(currentTag || '');
-
   const numberOfPagesByTag = await getNumberOfPagesByTag(currentTag || '');
-
   const allTags = await getAllTags();
 
   return {

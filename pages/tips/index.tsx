@@ -4,6 +4,11 @@ import { getAllPosts, getAllTags, getPostsForTopPage } from "@/lib/notionAPI";
 import Head from "next/head";
 import Link from "next/link";
 
+type Props = {
+  allPosts: any
+  allTags: any
+}
+
 export const getStaticProps = async () => {
   const allPosts = await getAllPosts();
   const allTags = await getAllTags();
@@ -17,7 +22,7 @@ export const getStaticProps = async () => {
   };
 };
 
-export default function Home({ allPosts, allTags }) {
+export default function Home({ allPosts, allTags }:Props) {
   return (
     <div>
       <Head>

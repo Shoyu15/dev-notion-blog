@@ -8,6 +8,12 @@ import {
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 
+type Props = {
+  posts:any
+  currentTag:any
+  allTags:any
+}
+
 export const getStaticPaths: GetStaticPaths = async () => {
   try {
     const allTags = await getAllTags();
@@ -51,7 +57,7 @@ const ArchiveTag = ({
   posts,
   currentTag,
   allTags,
-}) => {
+}: Props) => {
   return (
     <div>
       <Head>

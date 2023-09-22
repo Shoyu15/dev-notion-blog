@@ -6,9 +6,9 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
 type Props = {
-  params: any
-  post: any
-}
+  params: any;
+  post: any;
+};
 
 export const getStaticPaths = async () => {
   const allPosts = await getAllPosts();
@@ -20,7 +20,7 @@ export const getStaticPaths = async () => {
   };
 };
 
-export const getStaticProps = async ({ params }:Props) => {
+export const getStaticProps = async ({ params }: Props) => {
   // getSinglePost1. paramsという引数は現在のページのURLを見ることができる
   const post = await getSinglePost(params.slug); // getSinglePost2. URLの中のslugをgetSinglePOstに渡す
 
@@ -32,22 +32,28 @@ export const getStaticProps = async ({ params }:Props) => {
   };
 };
 
-const Post = ({ post }:Props) => {
+const Post = ({ post }: Props) => {
   return (
-    <section className="container mx-auto mt-20 max-w-4xl">
-      <h2 className="w-full text-3xl font-semibold">{post.metadata.title}</h2>
-      <p className="mt-2 text-gray-200">{post.metadata.date}</p>
-      <ul className="[&>*:not(:first-child)]:ml-2 mt-6">
-      {post.metadata.tags.map((tag: string, index: number) => (
-        <li
-        key={index}
-        className="bg-my-color-white inline-block text-my-color-dark rounded-xl px-3 py-1 font-normal text-xs"
-        >
-          {tag}
-        </li>
-      ))}
-      </ul>
-      <div className="mt-10 font-medium">
+    <section className="container mx-auto mt-20">
+      <div className="text-center">
+        <h1 className="inline-block mx-auto max-w-3xl text-3xl font-semibold">
+          <span>{post.metadata.title}</span>
+        </h1>
+        <div className="flex justify-center mt-6">
+          <p className="text-gray-200">{post.metadata.date}</p>
+        </div>
+        <ul className="[&>*:not(:first-child)]:ml-2 mt-6">
+          {post.metadata.tags.map((tag: string, index: number) => (
+            <li
+              key={index}
+              className="bg-my-color-white inline-block text-my-color-dark rounded-xl px-3 py-1 font-normal text-xs"
+            >
+              {tag}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="bg-gray-100 rounded-lg mt-10 mx-auto markdown p-10 text-my-color-dark max-w-4xl">
         <ReactMarkdown
           components={{
             code({ node, inline, className, children }) {
@@ -70,10 +76,8 @@ const Post = ({ post }:Props) => {
         </ReactMarkdown>
       </div>
       <div className="w-full text-center mt-16 mx-auto">
-          <Link href="/tips">
-            一覧へ戻る
-          </Link>
-        </div>
+        <Link href="/tips">一覧へ戻る</Link>
+      </div>
     </section>
   );
 };

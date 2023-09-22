@@ -1,0 +1,31 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+.markdown>:first-child {
+  @apply mt-0;
+}
+
+.markdown ul {
+  @apply my-4 px-5;
+}
+
+.markdown ul>li {
+  @apply list-disc my-1 text-sm;
+}
+
+.markdown h2 {
+  @apply border-b border-gray-300 font-semibold  mt-14 mb-4 text-xl pb-1;
+}
+
+.markdown h3, .markdown h4, .markdown h5, .markdown h6 {
+  @apply  font-semibold mt-10 mb-2 text-lg;
+}
+
+.markdown p {
+  @apply text-sm leading-relaxed;
+}
+
+.markdown a {
+  @apply underline;
+}

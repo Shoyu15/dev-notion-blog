@@ -13,7 +13,7 @@ function About() {
           alt=""
           height={900} // 画像の高さ
           width={1024} // 画像の幅
-        />
+        />1
       </figure>
     </main>
   )
